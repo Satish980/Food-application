@@ -1,7 +1,5 @@
 // Footer.jsx
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAd } from "@fortawesome/free-solid-svg-icons"; // Assuming there is a suitable icon for Swiggy
 import swiggyFooterLogo from '../swiggy_footer.png';
 
 const Footer = () => {
