@@ -1,4 +1,3 @@
-// Header.jsx
 import React from "react";
 import swiggyLogo from "../Swiggy_logo.svg.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,13 +5,27 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import swiggyMobile from "../swiggyMobile.webp";
 
 const Header = () => {
+  const redirectToHome = () => {
+    window.location.href = "/"; // Change this to the desired URL
+  };
+
   return (
     <header className="top-0 text-black p-4 shadow-sm">
       <div className="container mx-auto">
         <div className="flex items-center justify-between px-1 sm:px-0">
           <div>
-            <img src={swiggyLogo} alt="Logo" className="h-12 hidden sm:block" />
-            <img src={swiggyMobile} alt="mobile logo" className="h-8 block sm:hidden"/>
+            <img
+              src={swiggyLogo}
+              alt="Logo"
+              className="h-12 hidden sm:block cursor-pointer"
+              onClick={redirectToHome}
+            />
+            <img
+              src={swiggyMobile}
+              alt="mobile logo"
+              className="h-8 block sm:hidden cursor-pointer"
+              onClick={redirectToHome}
+            />
           </div>
           <div className="flex items-start relative">
             {/* Search bar with search icon */}
