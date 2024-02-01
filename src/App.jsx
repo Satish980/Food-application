@@ -10,13 +10,13 @@ const App = () => {
   };
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col min-h-screen">
       <Header />
-      <div className="flex flex-col pl-10 pr-10 sm: px-20 md:px-20 lg:px-40">
+      <div className="flex flex-col flex-grow pl-10 pr-10 sm:px-20 md:px-20 lg:px-40">
         <Filters handleSort={handleSort} />
         <FoodItems sortOption={sortOption} />
       </div>
-      <Footer className="pt-10" />
+      <Footer />
     </div>
   );
 };
