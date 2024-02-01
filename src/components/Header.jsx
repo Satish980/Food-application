@@ -1,12 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { connect } from "redux-bundler-react";
 
 import { headerLogoMobile, headerLogoWeb } from "../assets";
 
-const Header = () => {
+const Header = ({ doUpdateUrl }) => {
   const redirectToHome = () => {
-    window.location.href = "/";
+    doUpdateUrl('/')
   };
 
   return (
@@ -43,4 +44,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default connect("doUpdateUrl", Header);

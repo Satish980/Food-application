@@ -1,4 +1,3 @@
-// FoodItems.jsx
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes, faSpinner } from "@fortawesome/free-solid-svg-icons";
@@ -18,9 +17,7 @@ const Modal = ({ item, onClose, isLoading }) => {
 
         {/* Loader */}
         {isLoading || !item ? (
-          <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-75 rounded-lg">
-            <FontAwesomeIcon icon={faSpinner} spin className="text-gray-500" />
-          </div>
+          <div className="animate-pulse bg-gray-300 h-60 w-full object-cover rounded-lg mb-6"></div>
         ) : (
           <div>
             <h2 className="text-3xl font-bold mb-4">{item.strMeal}</h2>
