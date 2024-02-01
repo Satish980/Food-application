@@ -4,22 +4,25 @@ import {
   LIST_API,
   LOOKUP_API,
   SEARCH_API,
+  MEAL_BUNDLE_STATE,
 } from "./constants";
+import { setAreaList, setMealData } from "./scripts";
 
 export default {
-  name: "swiggy",
+  name: "mealBundle",
   reducer: (state = [], action) => {
     switch (action.type) {
       case "FETCH_FOOD_REQUEST":
         return {
           ...state,
+          mealBundleState: MEAL_BUNDLE_STATE.FETCH_MEAL_BY_LOCATION,
           fetchStatus: FETCH_STATUS.IN_PROGRESS,
         };
       case "FETCH_FOOD_SUCCESS":
         return {
           ...state,
           fetchStatus: FETCH_STATUS.SUCCESS,
-          foodData: action.response,
+          foodData: setMealData(action.response),
           currentMeal: null,
         };
       case "FETCH_FOOD_FAILED":
@@ -31,12 +34,13 @@ export default {
       case "FETCH_AREA_LIST_REQUEST":
         return {
           ...state,
+          mealBundleState: MEAL_BUNDLE_STATE.FETCH_AREA_LIST,
           fetchStatus: FETCH_STATUS.IN_PROGRESS,
         };
       case "FETCH_AREA_LIST_SUCCESS":
         return {
           ...state,
-          areaList: action.response,
+          areaList: setAreaList(action.response),
           fetchStatus: FETCH_STATUS.SUCCESS,
         };
       case "FETCH_AREA_LIST_FAILED":
@@ -48,12 +52,13 @@ export default {
       case "FETCH_CURRENT_MEAL_REQUEST":
         return {
           ...state,
+          mealBundleState: MEAL_BUNDLE_STATE.FETCH_CURRENT_MEAL,
           fetchStatus: FETCH_STATUS.IN_PROGRESS,
         };
       case "FETCH_CURRENT_MEAL_SUCCESS":
         return {
           ...state,
-          currentMeal: action.response,
+          currentMeal: setMealData(action.response),
           fetchStatus: FETCH_STATUS.SUCCESS,
         };
       case "FETCH_CURRENT_MEAL_FAILED":
@@ -102,7 +107,7 @@ export default {
   doFetchCurrentMeal:
     (mealId) =>
     ({ dispatch }) => {
-      dispatch({ type: "FETCH_CURRENT_MEAL_REQUEST " });
+      dispatch({ type: "FETCH_CURRENT_MEAL_REQUEST" });
       const fetchFood = async () => {
         try {
           const uri = `${LOOKUP_API}?i=${mealId}`;
@@ -133,10 +138,11 @@ export default {
   //     fetchData();
   //   }
   // },
-  selectFoodData: (state) => state.swiggy.foodData,
-  selectAreaList: (state) => state.swiggy.areaList,
-  selectFetchStatus: (state) => state.swiggy.fetchStatus,
-  selectCurrentMeal: (state) => state.swiggy.currentMeal,
+  selectFoodData: (state) => state.mealBundle.foodData,
+  selectAreaList: (state) => state.mealBundle.areaList,
+  selectFetchStatus: (state) => state.mealBundle.fetchStatus,
+  selectCurrentMeal: (state) => state.mealBundle.currentMeal,
+  selectMealBundleState: (state) => state.mealBundle.mealBundleState,
   init: (store) => {
     if (!store.selectFoodData()) {
       store.doFetchFoodByArea("Indian");
