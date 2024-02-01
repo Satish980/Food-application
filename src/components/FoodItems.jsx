@@ -1,9 +1,9 @@
 // FoodItems.jsx
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "redux-bundler-react";
-import { FETCH_STATUS } from "../api/constants";
+import { FETCH_STATUS, MEAL_BUNDLE_STATE } from "../bundles/constants";
 import Modal from "./Modal";
 
 const FoodItems = ({
@@ -12,6 +12,7 @@ const FoodItems = ({
   doFetchCurrentMeal,
   fetchStatus,
   sortOption,
+  mealBundleState,
 }) => {
   const [foodItems, setFoodItems] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
@@ -21,19 +22,18 @@ const FoodItems = ({
 
   useEffect(() => {
     if (foodData) {
-      setFoodItems(foodData?.meals);
+      setFoodItems(foodData);
     }
-    if (currentMeal) {
-      setSelectedItem(currentMeal.meals[0]);
-      setIsModalOpen(!isModalOpen);
+    if (currentMeal && currentMeal.length) {
+      setSelectedItem(currentMeal[0]);
     }
     if (foodData) {
-      let sortedItems = [...foodData?.meals];
+      let sortedItems = [...foodData];
 
       if (sortOption) {
         // Check if it's a regular or reverse alphabetical sort
         const isReverseSort = sortOption === "reverse_alphabetical";
-  
+
         sortedItems.sort((a, b) => {
           const comparison = a.strMeal.localeCompare(b.strMeal);
           return isReverseSort ? -comparison : comparison;
@@ -50,6 +50,7 @@ const FoodItems = ({
   const openModal = (item) => {
     // Set the selected item and open the modal
     doFetchCurrentMeal(item.idMeal);
+    setIsModalOpen(!isModalOpen);
   };
 
   const closeModal = () => {
@@ -57,9 +58,13 @@ const FoodItems = ({
     setIsModalOpen(!isModalOpen);
   };
 
-  if (fetchStatus === FETCH_STATUS.IN_PROGRESS) {
+  if (
+    fetchStatus === FETCH_STATUS.IN_PROGRESS &&
+    (mealBundleState === MEAL_BUNDLE_STATE.FETCH_MEAL_BY_LOCATION ||
+      mealBundleState === MEAL_BUNDLE_STATE.FETCH_AREA_LIST)
+  ) {
     return (
-      <div className="mt-4 w-full left-0 right-0 top-1/2">
+      <div className="mt-4 w-full left-0 right-0 bottom-1/2 top-1/2">
         <div className="flex flex-col justify-center items-center">
           <div className="border-t-4 border-blue-500 border-solid h-12 w-12 rounded-full animate-spin"></div>
           <p className="mt-2 font-bold">Preparing items for you...</p>
@@ -96,9 +101,7 @@ const FoodItems = ({
                         className="border-black text-white bg-green-700 rounded-full p-1 h-3 w-3"
                       />
                     </div>
-                    <p className="font-semibold pb-1">
-                      {(Math.random() * (5.0 - 3.0) + 3.0).toFixed(1)}
-                    </p>
+                    <p className="font-semibold pb-1">{item.rating}</p>
                   </div>
                 </div>
               </div>
@@ -125,7 +128,16 @@ const FoodItems = ({
         </button>
       </div>
       {/* Modal */}
-      {isModalOpen && <Modal item={selectedItem} onClose={closeModal} />}
+      {isModalOpen && (
+        <Modal
+          item={selectedItem}
+          onClose={closeModal}
+          isLoading={
+            fetchStatus === FETCH_STATUS.IN_PROGRESS &&
+            mealBundleState === MEAL_BUNDLE_STATE.FETCH_CURRENT_MEAL
+          }
+        />
+      )}
     </div>
   );
 };
@@ -135,5 +147,6 @@ export default connect(
   "selectFetchStatus",
   "doFetchCurrentMeal",
   "selectCurrentMeal",
+  "selectMealBundleState",
   FoodItems
 );
