@@ -3,7 +3,7 @@ import {
   FILTER_API,
   LIST_API,
   LOOKUP_API,
-  SEARCH_API,
+  // SEARCH_API,
   MEAL_BUNDLE_STATE,
 } from "./constants";
 import { setAreaList, setMealData } from "./scripts";

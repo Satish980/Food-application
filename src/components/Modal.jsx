@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar, faTimes, faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = ({ item, onClose, isLoading }) => {
   return (
