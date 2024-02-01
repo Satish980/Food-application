@@ -1,12 +1,12 @@
 import React from "react";
-import swiggyLogo from "../Swiggy_logo.svg.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import swiggyMobile from "../swiggyMobile.webp";
+
+import { headerLogoMobile, headerLogoWeb } from "../assets";
 
 const Header = () => {
   const redirectToHome = () => {
-    window.location.href = "/"; // Change this to the desired URL
+    window.location.href = "/";
   };
 
   return (
@@ -15,20 +15,19 @@ const Header = () => {
         <div className="flex items-center justify-between px-1 sm:px-0">
           <div>
             <img
-              src={swiggyLogo}
+              src={headerLogoWeb}
               alt="Logo"
               className="h-12 hidden sm:block cursor-pointer"
               onClick={redirectToHome}
             />
             <img
-              src={swiggyMobile}
+              src={headerLogoMobile}
               alt="mobile logo"
               className="h-8 block sm:hidden cursor-pointer"
               onClick={redirectToHome}
             />
           </div>
           <div className="flex items-start relative">
-            {/* Search bar with search icon */}
             <input
               type="text"
               placeholder="Search for restaurant and food"

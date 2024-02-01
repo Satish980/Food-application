@@ -1,4 +1,3 @@
-// Filters.jsx
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter } from "@fortawesome/free-solid-svg-icons";
@@ -88,7 +87,6 @@ const Filters = ({ handleSort, areaList, doFetchFoodByArea }) => {
             onChange={(e) => handleSort(e.target.value)}
             className="p-2 border rounded-lg"
           >
-            {/* <option value="">None</option> */}
             <option value="alphabetical">A-Z</option>
             <option value="reverse_alphabetical">Z-A</option>
           </select>

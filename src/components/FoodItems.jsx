@@ -1,4 +1,3 @@
-// FoodItems.jsx
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -48,13 +47,11 @@ const FoodItems = ({
   };
 
   const openModal = (item) => {
-    // Set the selected item and open the modal
     doFetchCurrentMeal(item.idMeal);
     setIsModalOpen(!isModalOpen);
   };
 
   const closeModal = () => {
-    // Close the modal by resetting the selected item
     setIsModalOpen(!isModalOpen);
   };
 
@@ -64,7 +61,7 @@ const FoodItems = ({
       mealBundleState === MEAL_BUNDLE_STATE.FETCH_AREA_LIST)
   ) {
     return (
-      <div className="mt-4 w-full left-0 right-0 bottom-1/2 top-1/2">
+      <div className="mt-4 w-full left-0 right-0 bottom-1/2 top-1/2 font-sans">
         <div className="flex flex-col justify-center items-center">
           <div className="border-t-4 border-blue-500 border-solid h-12 w-12 rounded-full animate-spin"></div>
           <p className="mt-2 font-bold">Preparing items for you...</p>
@@ -74,9 +71,8 @@ const FoodItems = ({
   }
 
   return (
-    <div className="mt-4 flex flex-col mb-4">
+    <div className="mt-4 flex flex-col mb-4 font-sans">
       <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4">
-        {/* Display food items in a grid */}
         {foodItems &&
           foodItems
             .slice((currentPage - 1) * pageSize, currentPage * pageSize)

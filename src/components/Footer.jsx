@@ -1,6 +1,6 @@
 // Footer.jsx
 import React from "react";
-import swiggyFooterLogo from '../swiggy_footer.png';
+import { footerLogo } from '../assets';
 
 const Footer = () => {
   return (
@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Swiggy icon with text */}
           <div className="flex items-center gap-2">
             <div>
-              <img src={swiggyFooterLogo} alt="Logo" className="h-5" />
+              <img src={footerLogo} alt="Logo" className="h-5" />
             </div>
             <span className="text-lg font-semibold">Swiggy</span>
           </div>
