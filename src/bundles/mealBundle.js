@@ -10,6 +10,7 @@ import { setAreaList, setMealData } from "./scripts";
 
 export default {
   name: "mealBundle",
+  // reducer function
   reducer: (state = [], action) => {
     switch (action.type) {
       case "FETCH_FOOD_REQUEST":
@@ -70,6 +71,8 @@ export default {
     }
     return state;
   },
+
+  // action creators
   doFetchFoodByArea:
     (location) =>
     ({ dispatch }) => {
@@ -138,15 +141,19 @@ export default {
   //     fetchData();
   //   }
   // },
+
+  // selectors
   selectFoodData: (state) => state.mealBundle.foodData,
   selectAreaList: (state) => state.mealBundle.areaList,
   selectFetchStatus: (state) => state.mealBundle.fetchStatus,
   selectCurrentMeal: (state) => state.mealBundle.currentMeal,
   selectMealBundleState: (state) => state.mealBundle.mealBundleState,
   init: (store) => {
+    // fetching indian meals on opening of application
     if (!store.selectFoodData()) {
       store.doFetchFoodByArea("Indian");
     }
+    // fetching area list
     if (!store.selectAreaList()) {
       store.doFetchAreaList();
     }

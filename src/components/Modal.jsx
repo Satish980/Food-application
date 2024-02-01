@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar, faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Modal = ({ item, onClose, isLoading }) => {
+  // Modal component to show individual meal details
   return (
     <div className="fixed top-0 left-0 z-10 w-full h-full flex items-center justify-center bg-black bg-opacity-50 font-sans">
       {/* The modal content */}
@@ -15,7 +16,7 @@ const Modal = ({ item, onClose, isLoading }) => {
           <FontAwesomeIcon icon={faTimes} />
         </button>
 
-        {/* Loader */}
+        {/* Skeleton or loader */}
         {isLoading || !item ? (
           <div className="animate-pulse bg-gray-300 h-60 w-full object-cover rounded-lg mb-6"></div>
         ) : (
@@ -27,12 +28,17 @@ const Modal = ({ item, onClose, isLoading }) => {
               src={item.strMealThumb}
               alt={item.strMeal}
               className="w-full h-60 object-cover rounded-lg mb-6"
+              loading="lazy"
             />
 
             {/* Display additional details about the food item */}
             <div className="mb-6">
-              <p className="text-gray-700 mb-2"><b className="font-bold">Category:</b> {item.strCategory}</p>
-              <p className="text-gray-700 mb-2"><b className="font-bold">Area:</b> {item.strArea}</p>
+              <p className="text-gray-700 mb-2">
+                <b className="font-bold">Category:</b> {item.strCategory}
+              </p>
+              <p className="text-gray-700 mb-2">
+                <b className="font-bold">Area:</b> {item.strArea}
+              </p>
               <p className="text-gray-700 h-20 overflow-auto">
                 <b className="font-bold">Recipe:</b> {item.strInstructions}
               </p>
@@ -46,14 +52,13 @@ const Modal = ({ item, onClose, isLoading }) => {
                   className="border-black text-white bg-green-700 rounded-full p-1 h-3 w-3"
                 />
               </div>
-              <p className="font-semibold pb-1">
-                {item.rating}
-              </p>
+              <p className="font-semibold pb-1">{item.rating}</p>
             </div>
           </div>
         )}
+        {/* Close button */}
         {/* 
-        <button onClick={onClose} className="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
+        <button onClick={onClose} className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
           Close
         </button> */}
       </div>

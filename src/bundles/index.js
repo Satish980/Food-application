@@ -1,3 +1,4 @@
+// composing redux bundle
 import { composeBundles } from "redux-bundler";
 import mealBundle from "./mealBundle";
 

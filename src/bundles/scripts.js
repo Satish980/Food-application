@@ -1,3 +1,4 @@
+// function takes response object and returns meal data
 const setMealData = (response) => {
   const meals = response?.meals;
 
@@ -10,6 +11,7 @@ const setMealData = (response) => {
   return foodData;
 };
 
+// function takes response object and return area list
 const setAreaList = (response) => {
   const areaList = response.meals.map((area) => area.strArea);
   return areaList;
