@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="flex items-center gap-2">
             <div>
               {/* Swiggy logo */}
-              <img src={footerLogo} alt="Logo" className="h-5" />
+              <img src={footerLogo} alt="Logo contains symbol of swiggy" className="h-5" />
             </div>
             {/* Swiggy text */}
             <span className="text-lg font-semibold">Swiggy</span>

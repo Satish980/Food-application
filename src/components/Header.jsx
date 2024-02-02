@@ -1,14 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
-import { connect } from "redux-bundler-react";
 
 import { headerLogoMobile, headerLogoWeb } from "../assets";
 
-const Header = ({ doUpdateUrl }) => {
+const Header = () => {
+
   const redirectToHome = () => {
-    doUpdateUrl('/')
-  };
+    window.location = window.location;
+  }
 
   return (
     <header className="top-0 text-black p-4 shadow-sm">
@@ -17,13 +17,13 @@ const Header = ({ doUpdateUrl }) => {
           <div>
             <img
               src={headerLogoWeb}
-              alt="Logo"
+              alt="logo contains swiggy symbol with english word"
               className="h-12 hidden sm:block cursor-pointer"
               onClick={redirectToHome}
             />
             <img
               src={headerLogoMobile}
-              alt="mobile logo"
+              alt="logo contains swiggy symbol"
               className="h-8 block sm:hidden cursor-pointer"
               onClick={redirectToHome}
             />
@@ -44,4 +44,4 @@ const Header = ({ doUpdateUrl }) => {
   );
 };
 
-export default connect("doUpdateUrl", Header);
+export default Header;

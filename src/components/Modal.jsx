@@ -13,7 +13,7 @@ const Modal = ({ item, onClose, isLoading }) => {
           onClick={onClose}
           className="absolute top-2 right-2 text-gray-500"
         >
-          <FontAwesomeIcon icon={faTimes} />
+          <FontAwesomeIcon icon={faTimes} title="close-icon" />
         </button>
 
         {/* Skeleton or loader */}
