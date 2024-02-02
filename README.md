@@ -13,8 +13,7 @@ The application employs lazy loading to optimize performance by loading images o
 
 ### 🌐 List of Food Items
 
-On the initial load, users can seamlessly browse through a list of food items available in India. The lazy loading feature ensures a smooth experience by fetching image data only when necessary.
-
+On the initial load, users can seamlessly browse through a list of food items available in India.
 ### 🌍 Filter by Area
 
 Users have the ability to filter food items based on different areas. The application provides a user-friendly dropdown menu that allows users to select their preferred area, enhancing the browsing experience.
@@ -31,7 +30,7 @@ The application includes a pagination feature, allowing users to navigate throug
 
 By clicking on a specific meal from the list, users can view detailed information about that meal, including its category, area, recipe, and ratings. The lazy loading mechanism ensures efficient loading of this detailed view.
 
-## Technologies Used
+## Technologies and Libraries Used
 
 - **React.js:** The frontend is developed using React.js, providing a dynamic and responsive user interface.
 
@@ -40,6 +39,11 @@ By clicking on a specific meal from the list, users can view detailed informatio
 - **Tailwind CSS:** The application's UI is styled using Tailwind CSS, offering a clean and modern design.
 
 - **API:** Meal data is fetched from [The MealDB API](https://www.themealdb.com/api.php), providing a vast collection of meal information.
+  
+- **Font Awesome:** The application's icons are taken from Fontawesome
+
+- **Netlify:** Application deployed in netlify: [BSF Food Explorer](https://bsf-application-swiggy.netlify.app/)
+
 
 ## Getting Started
 
