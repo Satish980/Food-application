@@ -5,10 +5,9 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { headerLogoMobile, headerLogoWeb } from "../assets";
 
 const Header = () => {
-
   const redirectToHome = () => {
-    window.location = window.location;
-  }
+    window.location.reload();
+  };
 
   return (
     <header className="top-0 text-black p-4 shadow-sm">

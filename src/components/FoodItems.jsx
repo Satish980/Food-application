@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar, faRedo } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "redux-bundler-react";
 import { FETCH_STATUS, MEAL_BUNDLE_STATE } from "../bundles/constants";
 import Modal from "./Modal";
@@ -82,6 +82,27 @@ const FoodItems = ({
     // Close the modal
     setIsModalOpen(!isModalOpen);
   };
+
+  if (fetchStatus === FETCH_STATUS.FAILED) {
+    return (
+      <div className="mt-4 flex flex-col mb-4 font-sans">
+        <div className="flex items-center justify-center mt-8">
+          {/* <img src={swiggyFailedImage} alt="Swiggy Failed" className="h-40" /> */}
+          <div className="ml-4 text-red-500">
+            <p className="text-xl font-bold">Oops! Something went wrong.</p>
+            <p>Please try again.</p>
+            <button
+              onClick={() => (window.location.reload())}
+              className="mt-2 px-4 py-2 bg-orange-500 text-white rounded-md"
+            >
+              <FontAwesomeIcon icon={faRedo} className="mr-2" />
+              Refresh
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-4 flex flex-col mb-4 font-sans">
