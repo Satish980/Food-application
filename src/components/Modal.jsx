@@ -18,7 +18,21 @@ const Modal = ({ item, onClose, isLoading }) => {
 
         {/* Skeleton or loader */}
         {isLoading || !item ? (
-          <div className="animate-pulse bg-gray-300 h-60 w-full object-cover rounded-lg mb-6"></div>
+          <div className="cursor-pointer shadow-sm rounded-lg bg-gray-200 p-4">
+            <h2 className="font-bold mb-4 bg-gray-300"></h2>
+            <div className="w-full h-40 bg-gray-300 mb-4 rounded-lg"></div>
+            <div className="pl-2 pb-2">
+              <div className="w-3/4 h-4 bg-gray-300 mb-2"></div>
+              <div className="w-3/4 h-4 bg-gray-300 mb-2"></div>
+              <div className="w-3/4 h-4 bg-gray-300 mb-2"></div>
+              <div className="flex items-center text-black-500">
+                <div className="bg-aqua rounded-full p-1 mr-1">
+                  <div className="w-4 h-4 bg-gray-300 rounded-full"></div>
+                </div>
+                <div className="w-8 h-4 bg-gray-300"></div>
+              </div>
+            </div>
+          </div>
         ) : (
           <div>
             <h2 className="text-3xl font-bold mb-4">{item.strMeal}</h2>
@@ -56,11 +70,6 @@ const Modal = ({ item, onClose, isLoading }) => {
             </div>
           </div>
         )}
-        {/* Close button */}
-        {/* 
-        <button onClick={onClose} className="bg-orange-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800">
-          Close
-        </button> */}
       </div>
     </div>
   );
