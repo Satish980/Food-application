@@ -40,7 +40,9 @@ By clicking on a specific meal from the list, users can view detailed informatio
 
 - **API:** Meal data is fetched from [The MealDB API](https://www.themealdb.com/api.php), providing a vast collection of meal information.
   
-- **Font Awesome:** The application's icons are taken from Fontawesome
+- **Font Awesome:** The application's icons are taken from Fontawesome.
+
+- **Jest:** Test suites are written using Jest.
 
 - **Netlify:** Application deployed in netlify: [BSF Food Explorer](https://bsf-application-swiggy.netlify.app/)
 
@@ -68,7 +70,13 @@ To run the application locally, follow these steps:
    npm start
    ```
 
-4. Open your browser and visit [http://localhost:3000](http://localhost:3000) to explore the Swiggy Food Explorer.
+4. Open your browser and visit [http://localhost:3000](http://localhost:3000) to explore the BSF Food Explorer.
+
+5. To test the application
+
+   ```bash
+   npm run test
+   ```
 
 
 ---
