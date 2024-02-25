@@ -3,7 +3,7 @@ import {
   FILTER_API,
   LIST_API,
   LOOKUP_API,
-  // SEARCH_API,
+  SEARCH_API,
   MEAL_BUNDLE_STATE,
 } from "./constants";
 import { setAreaList, setMealData } from "./scripts";
@@ -68,6 +68,25 @@ export default {
           fetchStatus: FETCH_STATUS.FAILED,
           error: action.error,
         };
+      case "FETCH_SEARCH_RESULTS_REQUEST":
+        return {
+          ...state,
+          fetchStatus: FETCH_STATUS.IN_PROGRESS,
+          mealBundleState: MEAL_BUNDLE_STATE.FETCH_SEARCH_RESULTS,
+        };
+      case "FETCH_SEARCH_RESULTS_SUCCESS":
+        console.log("action",action)
+        return {
+          ...state,
+          fetchStatus: FETCH_STATUS.SUCCESS,
+          searchResults: action.response,
+        };
+      case "FETCH_SEARCH_RESULTS_FAILED":
+        return {
+          ...state,
+          fetchStatus: FETCH_STATUS.FAILED,
+          error: action.error,
+        };
     }
     return state;
   },
@@ -124,23 +143,23 @@ export default {
       };
       fetchFood();
     },
-  // doSearchFoodByName: (mealName) => {
-  //   ({ dispatch }) => {
-  //     dispatch({ type: "FETCH_FOOD_REQUEST" });
-  //     const fetchData = async () => {
-  //       try {
-  //         const uri = `${SEARCH_API}?s=${mea}`;
-  //         const response = await fetch(uri);
-  //         const data = await response.json();
-  //         dispatch({ type: "FETCH_FOOD_SUCCESS", response: data });
-  //       } catch (error) {
-  //         dispatch({ type: "FETCH_FOOD_FAILED", error: error });
-  //         console.error("Error fetching data:", error);
-  //       }
-  //     };
-  //     fetchData();
-  //   }
-  // },
+  doSearchMealByName:
+    (mealName) =>
+    ({ dispatch }) => {
+      dispatch({ type: "FETCH_SEARCH_RESULTS_REQUEST" });
+      const fetchData = async () => {
+        try {
+          const uri = `${SEARCH_API}?s=${mealName}`;
+          const response = await fetch(uri);
+          const data = await response.json();
+          dispatch({ type: "FETCH_SEARCH_RESULTS_SUCCESS", response: data });
+        } catch (error) {
+          dispatch({ type: "FETCH_SEARCH_RESULTS_FAILED", error: error });
+          console.error("Error fetching data:", error);
+        }
+      };
+      fetchData();
+    },
 
   // selectors
   selectFoodData: (state) => state.mealBundle.foodData,
@@ -148,6 +167,7 @@ export default {
   selectFetchStatus: (state) => state.mealBundle.fetchStatus,
   selectCurrentMeal: (state) => state.mealBundle.currentMeal,
   selectMealBundleState: (state) => state.mealBundle.mealBundleState,
+  selectSearchResults: (state) => state.mealBundle.searchResults,
   init: (store) => {
     // fetching indian meals on opening of application
     if (!store.selectFoodData()) {
