@@ -10,16 +10,20 @@ const Header = ({ doSearchMealByName, searchResults: apiSearchResults }) => {
     window.location.reload();
   };
 
-  const [searchResults, setSearchResults] = useState(apiSearchResults);
+  const [searchResults, setSearchResults] = useState(apiSearchResults || []);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
-    if (searchText) {
-      doSearchMealByName(searchText);
-    }
     if (!searchText) {
       setSearchResults([]);
     }
+    const timeId = setTimeout(()=>{
+      if (searchText) {
+        doSearchMealByName(searchText);
+      }
+    }, 1500);
+
+    return () => clearTimeout(timeId);
   }, [searchText, doSearchMealByName]);
 
   useEffect(() => {
