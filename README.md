@@ -54,13 +54,13 @@ To run the application locally, follow these steps:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Satish980/satishkumar_frontenddeveloper
+   git clone https://github.com/Satish980/Food-application
    ```
 
 2. Install dependencies:
 
    ```bash
-   cd satishkumar_frontenddeveloper
+   cd Food-application
    npm install
    ```
 
